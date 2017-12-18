@@ -5,8 +5,8 @@ static int randomBetween(int low, int high)
     return (qrand() % ((high + 1) - low) + low);
 }
 
-Target::Target(QObject *parent) :
-    QObject(parent), QGraphicsItem()
+Target::Target(QObject *parent) /*:
+    QObject(parent), QGraphicsItem()*/
 {
     health = randomBetween(1,15);
     maxHealth = health;
@@ -72,4 +72,3 @@ ObjectType Target::getType(){
 void Target::slotGameTimer(){
     return;
 }
-

@@ -1,5 +1,6 @@
 #include "bullet.h"
 #include <math.h>
+#include <typeinfo>
 
 static const double Pi = 3.14159265358979323846264338327950288419717;
 static double TwoPi = 2.0 * Pi;
@@ -14,7 +15,7 @@ static qreal normalizeAngle(qreal angle)
 }
 
 Bullet::Bullet(QPointF start, QPointF end, QGraphicsItem *hero, QObject *parent)
-    : QObject(parent), QGraphicsItem()
+//    : QObject(parent), QGraphicsItem()
 {
     this->hero = hero;
     this->setRotation(0);
@@ -66,9 +67,9 @@ void Bullet::slotTimerBullet()
                                                            << mapToScene(-1, -1)
                                                            << mapToScene(1, -1));
     foreach (QGraphicsItem *item, foundItems) {
-        if (item == this || item == hero)
+        if (item == this || item == hero || typeid(*this) == typeid(*item))
             continue;
-        callbackFunc(item);
+        emit shotHit(item);
         this->deleteLater();
     }
     if(this->x() < 0){
@@ -81,12 +82,12 @@ void Bullet::slotTimerBullet()
     if(this->y() < 0){
         this->deleteLater();
     }
-    if(this->y() > 500){
+    if(this->y() >  500){
         this->deleteLater();
     }
 }
 
-void Bullet::setCallbackFunc(void (*func)(QGraphicsItem *))
-{
-    callbackFunc = func;
-}
+//void Bullet::setCallbackFunc(void (*func)(QGraphicsItem *))
+//{
+//    callbackFunc = func;
+//}

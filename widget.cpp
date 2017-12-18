@@ -60,7 +60,8 @@ Widget::~Widget()
 void Widget::slotBullet(QPointF start, QPointF end, Target * shooter)
 {
     Bullet* bullet = new Bullet(start, end, shooter);
-    bullet->setCallbackFunc(slotHitTarget);
+    connect(bullet, &Bullet::shotHit, this, &Widget::slotHitTarget);
+//    bullet->setCallbackFunc(slotHitTarget);
     scene->addItem(bullet);
 }
 
@@ -81,9 +82,10 @@ void Widget::slotHitTarget(QGraphicsItem *item)
     foreach (QGraphicsItem *targ, targets) {
         if(targ == item){
             Target *t = qgraphicsitem_cast <Target *> (targ);
-            t->hit(randomBetween(1,3));
+            if (t)
+                t->hit(randomBetween(1,3));
         }
     }
 }
 
-QList<QGraphicsItem *> Widget::targets;
+//QList<QGraphicsItem *> Widget::targets;

@@ -27,9 +27,10 @@ private:
     CustomeScene  *scene;
     Shooter * shooter;
     QTimer *timerTarget;
-    static QList<QGraphicsItem *> targets;
+    QList<QGraphicsItem *> targets;
 
-    static void slotHitTarget(QGraphicsItem *item);
+public slots:
+    void slotHitTarget(QGraphicsItem *item);
 
 private slots:
     void slotCreateTarget();

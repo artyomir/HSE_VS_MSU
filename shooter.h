@@ -19,7 +19,7 @@ public:
     void hit(int damage);
     ObjectType getType();
 signals:
-    void signalBullet(QPointF start, QPointF end, Target * shooter);
+//    void signalBullet(QPointF start, QPointF end, Target * shooter);
 public slots:
     void slotTarget(QPointF point);
     void slotShot(bool shot);

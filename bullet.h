@@ -9,16 +9,16 @@
 #include <QDebug>
 #include "target.h"
 
-class Bullet: public QObject, public QGraphicsItem
+class Bullet: /*public QObject, public QGraphicsItem*/ public QGraphicsObject
 {
     Q_OBJECT
 public:
     explicit Bullet(QPointF start, QPointF end, QGraphicsItem *hero, QObject *parent = 0);
     ~Bullet();
-    void setCallbackFunc(void (*func) (QGraphicsItem * item));
+//   void setCallbackFunc(void (*func) (QGraphicsItem * item));
 
 signals:
-
+    void shotHit(QGraphicsItem * item);
 
 public slots:
 

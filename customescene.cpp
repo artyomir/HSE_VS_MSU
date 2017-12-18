@@ -1,7 +1,7 @@
 #include "customescene.h"
 
 CustomeScene::CustomeScene(QObject *parent) :
-    QGraphicsScene()
+    QGraphicsScene(parent)
 {
     Q_UNUSED(parent);
 }

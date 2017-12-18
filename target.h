@@ -10,7 +10,7 @@
 
 typedef enum{SHOOTER, TARGET} ObjectType;
 
-class Target: public QObject, public QGraphicsItem
+class Target: /*public QObject,*/ public QGraphicsObject
 {
     Q_OBJECT
 public:
@@ -25,7 +25,7 @@ public:
     QTimer *bulletTimer;
 
 signals:
-    virtual void signalBullet(QPointF start, QPointF end, Target * shooter);
+    void signalBullet(QPointF start, QPointF end, Target * shooter);
 
 public slots:
     virtual void slotGameTimer();
