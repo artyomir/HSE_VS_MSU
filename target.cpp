@@ -1,4 +1,5 @@
 #include "target.h"
+#include "widget.h"
 
 static int randomBetween(int low, int high)
 {
@@ -31,7 +32,7 @@ QRectF Target::boundingRect() const
 void Target::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
     painter->setPen(Qt::black);
-    painter->setBrush(QColor(255, 0, 0,/* (17 * health) % */254));
+    painter->setBrush(QColor(255, 0, 0, (17 * health) % 254));
     painter->drawRect(-20,-10,40,30);
 
     painter->setPen(Qt::NoPen);
@@ -46,7 +47,12 @@ void Target::hit(int damage)
 {
     health -= damage;
     this->update(QRectF(-20,-20,40,40));
-    if(health <= 0) this->deleteLater();
+    if(health <= 0){
+        if (this->getType() == TARGET){
+            emit signalScore();
+        }
+        this->deleteLater();
+    }
 }
 
 void Target::slotTarget(QPointF point)
@@ -72,3 +78,9 @@ ObjectType Target::getType(){
 void Target::slotGameTimer(){
     return;
 }
+
+void Target::stopSlot(){
+    bulletTimer->stop();
+    this->deleteLater();
+}
+

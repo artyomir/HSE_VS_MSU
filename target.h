@@ -26,11 +26,13 @@ public:
 
 signals:
     void signalBullet(QPointF start, QPointF end, Target * shooter);
+    void signalScore();
 
 public slots:
     virtual void slotGameTimer();
     virtual void slotTarget(QPointF point);
     virtual void slotShot(bool shot);
+    void stopSlot();
 
 private slots:
     virtual void slotBulletTimer();

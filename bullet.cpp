@@ -87,7 +87,3 @@ void Bullet::slotTimerBullet()
     }
 }
 
-//void Bullet::setCallbackFunc(void (*func)(QGraphicsItem *))
-//{
-//    callbackFunc = func;
-//}

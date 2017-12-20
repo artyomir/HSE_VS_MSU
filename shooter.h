@@ -20,6 +20,7 @@ public:
     ObjectType getType();
 signals:
 //    void signalBullet(QPointF start, QPointF end, Target * shooter);
+    void signalDie();
 public slots:
     void slotTarget(QPointF point);
     void slotShot(bool shot);

@@ -28,12 +28,22 @@ SOURCES += main.cpp\
     customescene.cpp\
     target.cpp\
     bullet.cpp \
-    shooter.cpp
+    shooter.cpp \
+    registration.cpp \
+    objvec.cpp \
+    authorization.cpp
 
 HEADERS  += widget.h \
     customescene.h\
     target.h\
     bullet.h \
-    shooter.h
+    shooter.h \
+    registration.h \
+    objvec.h \
+    authorization.h
 
-FORMS    += widget.ui
+
+FORMS    += widget.ui \
+    registration.ui \
+    authorization.ui
+

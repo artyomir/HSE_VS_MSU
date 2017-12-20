@@ -27,7 +27,7 @@ Shooter::Shooter(QObject *parent)
     gameTimer->start(10);
 
     target = QPointF(0,0);
-    health = 15;
+    health = 7;
     maxHealth = health;
 
     this->bulletTimer->start(1000/6);
@@ -171,7 +171,10 @@ void Shooter::hit(int damage)
 {
     health -= damage;
     this->update(QRectF(-15,-15,35,35));
-    if(health <= 0) this->deleteLater();
+    if(health <= 0) {
+        this->deleteLater();
+        emit signalDie();
+    }
 }
 
 ObjectType Shooter::getType(){
